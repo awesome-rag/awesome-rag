@@ -14,3 +14,7 @@ Collect typical RAG papers and systems.
 ![](https://osgraph.com/png/graphs/project-ecosystem/github/awesome-rag/awesome-rag)
 
 Made with [osgraph.com](https://osgraph.com).
+
+## RAG Systems
+
+- [IHUI-AI](https://github.com/IHUI-INF-AI/IHUI-AI) - Eight-platform full-stack AI operating system with a built-in RAG knowledge base, unifying 176 LLMs via LangGraph + MCP + A2A. Multi-tenant RLS over 340 tables, agent marketplace, Apache 2.0. Live demo: https://ihui.ai
