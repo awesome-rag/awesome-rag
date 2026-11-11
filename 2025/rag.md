@@ -1,6 +1,18 @@
 # RAG 2025
 
 ## 2025.02
+### ParamMute【参数静音】
+> **参数静音**：像开卷考试时提醒考生别急着凭记忆作答，先专心读题目附带的材料：找出在不忠实回答中被过度激活的中深层 FFN，把它们的“音量”调低，让模型在检索证据与自身记忆冲突时更多依据检索到的内容作答。
+>
+
+* 时间：02.21
+* 论文：[ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation](https://arxiv.org/abs/2502.15543)
+
+ParamMute（NeurIPS 2025）研究 RAG 中输出与检索内容相矛盾的不忠实生成，发现其与中深层 FFN 的过度激活相关。方法抑制这些与不忠实相关的 FFN，并配合即插即用的适配，使模型更依赖检索到的知识；同时构建了 CoFaithfulQA 基准，用于评估内部知识与准确外部证据冲突时的忠实性。实验表明，ParamMute 在 CoFaithfulQA 和 ConFiQA 上都显著提升了忠实性，减少了对参数记忆的依赖。
+
+![](https://passionate11.github.io/ParamMute-project-page/static/images/suppression.png)
+
+
 ### CAG【缓存即知识】
 > **缓存即知识**：像一位把常用参考书提前复印并装订成册的老教授，不再临时翻图书馆，而是直接把整本“知识”塞进 32K/64K 长上下文 LLM 的 KV-Cache。遇到提问，模型无需检索，直接从缓存里秒读原文，既省延迟又避幻觉，把 RAG 的“查-拼-答”三步曲简化成一步“读-答”。
 > 
@@ -11,6 +23,17 @@
 Cache-Augmented Generation（CAG）把知识库一次性离线编码进长上下文 LLM 的 KV-Cache，推理阶段零检索、零延迟，直接读缓存输出答案。在 SQuAD 与 HotPotQA 多档规模实验中，CAG 的 BERTScore 均优于或持平传统 BM25/Dense RAG，且消除检索开销。
 
 ![](https://i.imgur.com/aNdQZdl.png)
+
+### ExpandR【扩写搭档】
+> **扩写搭档**：像让写作助手和检索员结对训练：大模型负责把简短的查询扩写成语义更丰富的描述，稠密检索器借这些扩写来学习；检索效果又反过来指导大模型怎么扩写，两者在训练中相互适配。
+>
+
+* 时间：02.24
+* 论文：[ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance](https://arxiv.org/abs/2502.17057)
+
+ExpandR（EMNLP 2025）是一个联合优化大模型与稠密检索器的 LLM 增强稠密检索框架：大模型生成语义丰富的查询扩展，用于增强检索器的训练；同时用 DPO 训练大模型，奖励函数兼顾检索效果与生成一致性。这种联合优化让查询扩展既信息丰富又适合检索，在多个基准上稳定优于强基线，检索性能提升超过 5%。
+
+![](https://raw.githubusercontent.com/NEUIR/ExpandR/main/assets/expandr.png)
 
 
 ## 2025.04
